@@ -19,7 +19,7 @@ app = Flask(__name__, static_url_path="/static", static_folder="static")
 app.secret_key = "TosyaMensucat"
 
 # reCAPTCHA PublicKey
-pubkey = "6LfN9E0bAAAAAGATqWIUliOTaBbfr4pKS1faXRqE"
+pubkey = "Google ReCAPTCHA Public Key"
 
 # Flask and MySQL Configuration
 app.config["MYSQL_HOST"] = "localhost"
