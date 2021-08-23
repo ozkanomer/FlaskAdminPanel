@@ -1,0 +1,55 @@
+<style>
+    .Update {
+        display: block;
+        position: absolute;
+        top: 20%;
+        left: 40%;
+    }
+
+    #UpdateInput {
+        padding: 8px;
+    }
+
+    #UpdateButton {
+        padding: 10px;
+        background-color: rgb(209, 3, 3);
+        color: white;
+        border: none;
+        border-radius: 3px;
+    }
+
+    #UpdateButton:hover {
+        background-color: red;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 700px) {
+        
+        .Update {
+            position: absolute;
+            height: auto;
+            top: auto;
+            left: auto;
+        }
+    }
+
+</style>
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+{% block body %}
+
+    <div class="Update">
+        
+        <p><strong>Eski Linked-in Adresi:</strong>{{ data.contact_linkedin }}</p>
+
+        <form action="" method="POST">
+
+                <input id="UpdateInput" name="NewLink" type="text" placeholder="Yeni Adresi Giriniz">
+
+                <input id="UpdateButton" type="submit" value="Güncelle">       
+        </form>
+    </div>
+    
+
+{% endblock %}

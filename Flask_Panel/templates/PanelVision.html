@@ -1,0 +1,63 @@
+<style>
+    .vision-container {
+        width: 420px;
+        margin-top: 30px;
+    }
+
+    .vision-text {
+        background-color: rgb(189, 194, 199);
+        padding: 10px;
+    }
+
+    form {
+        display: block;
+        align-items: center;
+        padding: 10px;
+    }
+
+    textarea {
+        margin-top: 20px;
+        min-height: 300px;
+        max-height: 300px;
+        min-width: 400px;
+        max-width: 400px;
+    }
+
+    input {
+        width: 80px;
+        height: 45px;
+        margin-top: 30px;
+        border: none;
+        background-color: springgreen;
+        border-radius: 4px;
+    }
+
+    input:hover {
+        background-color: green;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+
+{% block body %}
+    <div class="vision-container">
+        <p><strong>Eski Vizyonumuz Sayfası Yazısı:</strong></p>
+        <div class="vision-text">
+            <p>
+                {{ data.vision_text }}
+            </p>
+        </div>
+
+        <form style="display: block;" action="" method="POST">
+            <label for="text-area"><strong>Yeni Vizyonumuz Yazısı:</strong></label>
+            <textarea id="text-area" style="width: 400px;" name="text">
+
+            </textarea>
+
+            <input type="submit" value="Güncelle">
+        </form>
+    </div>
+{% endblock %}

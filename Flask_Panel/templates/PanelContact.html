@@ -1,0 +1,131 @@
+<style>
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    table tr {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    tr td, tr th {
+        padding: 5px;
+        border: 1px solid black;
+    }
+
+    .btn {
+        padding: 3px;
+        border: none;
+        border-radius: 3px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-show {
+        background-color: #04AA6D;
+    }
+
+    .btn-delete {
+        background-color: #ff471a;
+    }
+
+    .btn-show:hover {
+        background-color: green;
+    }
+
+    .btn-delete:hover {
+        background-color: red;
+    }
+
+    .contact-container {margin-bottom: 60px;}
+</style>
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+
+<!-- Body -->
+{% block body %}
+    <div class="contact-container">
+        <h3>İletişim Sayfası Ayarları</h3>
+
+        <hr>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Ayar Tipi</th>
+                      <th scope="col">Güncel Değeri</th>
+                      <th scope="col">Aksiyon</th>
+                    </tr>
+                  </thead>
+            
+            <tbody>
+                <!-- E-mail -->
+                <tr class="no-read">
+                        <td scope="row">E-posta:</td>
+                        <td>{{ data.contact_mail }}</td>
+
+                        <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangeMail">Güncelle</a></td>
+                </tr>
+
+                <!-- Phone -->
+                <tr class="no-read">
+                        <td scope="row">Telefon:</td>
+                        <td>{{ data.contact_phone }}</td>
+
+                        <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangePhone">Güncelle</a></td>
+                </tr>
+
+                <!-- Address -->
+                <tr class="no-read">
+                        <td scope="row">Adres:</td>
+                        <td>{{ data.contact_address }}</td>
+
+                        <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangeAddress">Güncelle</a></td>
+                </tr>
+
+                <!-- Iframe -->
+                <tr class="no-read">
+                    <td scope="row">Google Harita:</td>
+                    <td>{{ data.contact_iframe[:25:] }}</td>
+
+                    <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangeMaps">Güncelle</a></td>
+                </tr>
+
+                <!-- Facebook -->
+                <tr class="no-read">
+                    <td scope="row">Facebook: <i class="fab fa-facebook"></i></td>
+                    <td>{{ data.contact_facebook }}</td>
+
+                    <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangeFacebookLink">Güncelle</a></td>
+                </tr>
+
+                <!-- Twitter -->
+                <tr class="no-read">
+                    <td scope="row">Twitter: <i class="fab fa-twitter"></i></td>
+                    <td>{{ data.contact_twitter }}</td>
+
+                    <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangeTwitterLink">Güncelle</a></td>
+                </tr>
+
+                <!-- Instagram -->
+                <tr class="no-read">
+                    <td scope="row">Instagram: <i class="fab fa-instagram"></i></td>
+                    <td>{{ data.contact_instagram }}</td>
+
+                    <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangeInstagramLink">Güncelle</a></td>
+                </tr>
+
+                <!-- Linked In -->
+                <tr class="no-read">
+                    <td scope="row">Linked In: <i class="fab fa-linkedin"></i></td>
+                    <td>{{ data.contact_linkedin }}</td>
+
+                    <td><a class="btn btn-show" href="/panel/SitePages/PanelContactSettings/ChangeLinkedinLink">Güncelle</a></td>
+                </tr>
+            </tbody>
+    </div>
+
+{% endblock %}

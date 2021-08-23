@@ -1,0 +1,55 @@
+<style>
+    .MailUpdate {
+        display: block;
+        position: absolute;
+        top: 20%;
+        left: 40%;
+    }
+
+    #MailUpdateInput {
+        padding: 8px;
+    }
+
+    #MailUpdateButton {
+        padding: 10px;
+        background-color: rgb(209, 3, 3);
+        color: white;
+        border: none;
+        border-radius: 3px;
+    }
+
+    #MailUpdateButton:hover {
+        background-color: red;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 700px) {
+        
+        .MailUpdate {
+            position: absolute;
+            height: auto;
+            top: auto;
+            left: auto;
+        }
+    }
+
+</style>
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+{% block body %}
+
+    <div class="MailUpdate">
+        
+        <p><strong>Eski Telefon:</strong>{{ data.contact_phone }}</p>
+
+        <form action="" method="POST">
+
+                <input id="MailUpdateInput" name="NewPhone" type="text" placeholder="Yeni Telefon Giriniz">
+
+                <input id="MailUpdateButton" type="submit" value="Güncelle">       
+        </form>
+    </div>
+    
+
+{% endblock %}

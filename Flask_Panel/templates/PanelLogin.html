@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+
+    <!-- reCAPTCHA Script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- FontAwesome cdnjs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+    <!-- Link Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <style>
+
+        /* The alert message box */
+.alert {
+    padding: 20px;
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border:#dff0d8;
+  }
+
+  .alert-danger {
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+  }
+
+
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgb(230, 227, 227);
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, .8);
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+            border-radius: 10px;
+        }
+
+        .box h2 {
+            margin: 0 0 30px;
+            padding: 0;
+            color: #FFF;
+            text-align: center;
+        }
+
+        .box .inputBox {
+            position: relative;
+        }
+
+        .box .inputBox input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #FFF;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid;
+            outline: none;
+            background: transparent;
+        }
+
+        .box .inputBox label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #FFF;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .box .inputBox input:focus ~ label, .box .inputBox input:valid ~ label {
+            top: -18px;
+            left: 0;
+            color: #03a9f4;
+            font-size: 12px;
+        }
+
+        .box input[type="submit"] {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #FFF;
+            background: #03a9f4;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            height: 40px;
+        }
+
+
+        .eye {
+            right: -35px;
+            background-color: transparent;
+            cursor: pointer;
+            padding: 6px;
+            position: absolute;
+            margin-right: 40px;
+            color: #FFF;
+        }
+
+        .box input[type="submit"]:hover {
+            opacity: 0.8;
+        }
+
+        .submit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .turn {
+            padding: 10px;
+        }
+
+        .turn a{
+            text-decoration: none;
+            color: #03a9f4;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="turn">
+        <a href="/">< Siteye Geri Dön</a>
+    </div>
+
+    <div class="box">
+        <!-- Form Header -->
+        <h2>{{title}}</h2>
+
+        <!-- Flash Messages -->
+        {% include "includes/messages.html" %}
+
+        <!-- Form Body -->
+        <form method="POST">
+            <div class="inputBox">
+                <input name="UserName" type="text" required>
+                <label for="">Kullanıcı Adı</label>
+            </div>
+    
+            <div class="inputBox">
+                <div class="password-container">
+                    <input class="password" name="password" type="password" autocomplete="off" required>
+                    
+                    <!-- Show or hide eye button -->
+                    <span class="eye" onclick="togglePass()">
+                        <i class="fa fa-eye-slash"></i>
+                    </span>
+                    <label for="">Parola</label>
+                </div>
+                
+                
+            </div>
+
+            <div class="submit">
+
+                <!-- Submit Button -->
+                <input type="submit" value="Giriş">
+
+                <!-- reCAPTCHA Button -->
+                <div class="g-recaptcha" data-sitekey="{{pubkey}}"></div>
+               
+            </div>
+            
+        </form>
+
+    </div>
+
+    <script>
+
+        /* Show or Hide password function */
+        const passwordEl = document.querySelector(".password");
+        const eyeButton = document.querySelector(".fa");
+        let isPass = true;
+        function togglePass() {
+            if(isPass) {
+                passwordEl.setAttribute("type", "Text");
+                eyeButton.classList.remove("fa-eye-slash");
+                eyeButton.classList.add("fa-eye");
+                isPass = false;
+            } else {
+                passwordEl.setAttribute("type", "password");
+                eyeButton.classList.remove("fa-eye");
+                eyeButton.classList.add("fa-eye-slash");
+                isPass = true;
+            }
+        }
+
+    </script>
+    <script>
+        // Get all elements with class="closebtn"
+        var close = document.getElementsByClassName("closebtn");
+        var i;
+        
+        // Loop through all close buttons
+        for (i = 0; i < close.length; i++) {
+          // When someone clicks on a close button
+          close[i].onclick = function(){
+        
+            // Get the parent of <span class="closebtn"> (<div class="alert">)
+            var div = this.parentElement;
+        
+            // Set the opacity of div to 0 (transparent)
+            div.style.opacity = "0";
+        
+            // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+          }
+        }
+        </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<style>
+    .visitor-container {
+        position: absolute;
+        background-color: #a94442;
+        padding: 30px;
+        width: 200px;
+        margin: 10px;
+        color: white;
+        border-radius: 5px;
+        top: 15%;
+    }
+
+    .dashboard-title {
+        text-align: center;
+    }
+</style>
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+
+<!-- Body -->
+{% block body %}
+<div class="dashboard-title">
+    <h2>Panel Anasayfa</h2>
+</div>
+<div class="visitor-container">
+    <p><strong>Toplam Ziyaretçi Sayısı: <br> <br></strong>
+        {{ VisitorCount }}
+    </p>
+</div>
+
+{% endblock %}

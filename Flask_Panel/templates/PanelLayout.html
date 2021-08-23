@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{ title }} </title>
+
+    <link rel="shortcut icon" type="image/png" href="/static/images/PanelIcon/System-control-panel-icon.png"/>
+        <!-- reCAPTCHA Script -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <!-- FontAwesome cdnjs -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    
+    <style>
+        /* The alert message box */
+      *{
+        transition: 0.4s;
+      }
+
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFF;
+        }
+
+            .alert {
+                position: absolute;
+                top: 5%;
+                left: 20%;
+                padding: .75rem 1.25rem;
+                margin-bottom: 1rem;
+                border: 1px solid transparent;
+                border-radius: .25rem;
+            }
+          
+            .alert-success {
+              background-color: #dff0d8;
+              color: #3c763d;
+              border:#dff0d8;
+            }
+          
+            .alert-danger {
+              background-color: #f2dede;
+              border-color: #ebcccc;
+              color: #a94442;
+            }
+
+          /* On screens that are less than 700px wide, make the sidebar into a topbar */
+    @media screen and (max-width: 700px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+        .sidebar a {float: left;}
+        div.content {margin-left: 0;}
+
+        .visitor-container {
+            position: absolute;
+            top: 50%;
+        }
+    }
+    
+    /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+    @media screen and (max-width: 400px) {
+        .sidebar a {
+            text-align: center;
+            float: none;
+        }
+
+        
+    }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    {% include "/includes/SideNavbar.html" %}
+
+    <div class="content">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+    {% include "includes/messages.html" %}   
+
+    <script>
+        // Get all elements with class="closebtn"
+        var close = document.getElementsByClassName("closebtn");
+        var i;
+        
+        // Loop through all close buttons
+        for (i = 0; i < close.length; i++) {
+          // When someone clicks on a close button
+          close[i].onclick = function(){
+        
+            // Get the parent of <span class="closebtn"> (<div class="alert">)
+            var div = this.parentElement;
+        
+            // Set the opacity of div to 0 (transparent)
+            div.style.opacity = "0";
+        
+            // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+          }
+        }
+        </script>
+</body>
+</html>
+

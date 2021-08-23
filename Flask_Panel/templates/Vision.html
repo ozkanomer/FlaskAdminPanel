@@ -1,0 +1,64 @@
+<style>
+    body {
+        background: url("../static/images/BackGround/bg.jpg") no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+    }
+
+    .vision-container {
+        background-color: brown;
+        position: absolute;
+        top: 25%;
+        text-align: center;
+        color: white;
+        display: block;
+        margin: 0 30px 0 30px;
+        padding: 60px;
+        -webkit-box-shadow: 4px 4px 12px 5px rgba(0,0,0,0.76); 
+        box-shadow: 4px 4px 12px 5px rgba(0,0,0,0.76);
+    }
+
+    .vision-container h2 {
+        letter-spacing: 2px;
+    }
+
+
+
+</style>
+
+<!-- Extend Layout -->
+{% extends "Layout.html" %}
+
+{% block body %}
+    <div class="vision-container">
+        <h2>Vizyonumuz</h2><br>
+        <hr>
+        <br>
+        <p>
+            {% if data.vision_text != "" %}
+                {{ data.vision_text }}
+            {% endif %}
+        </p>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function(){
+              if(this.scrollY > 20) 
+                $(".navbar").addClass("sticky");
+              else
+                $(".navbar").removeClass("sticky");
+            });
+          
+            $('.menu-toggler').click(function(){
+              $(this).toggleClass("active");
+              $(".navbar-menu").toggleClass("active");
+            });
+          });
+        
+          // Get all elements with class="closebtn"
+          var close = document.getElementsByClassName("closebtn");
+          var i;
+    </script>
+{% endblock %}

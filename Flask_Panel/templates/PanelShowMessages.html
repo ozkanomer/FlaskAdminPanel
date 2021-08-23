@@ -1,0 +1,23 @@
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+
+<!-- Extend Body Block -->
+{% block body %}
+
+    <div class="message-container">
+        <h2>Mesaj</h2>
+        <hr>
+        <p><strong>Gönderen Ad ve Soyad :</strong> {{message.messages_sender_name}}</p>
+
+        <p><strong>Gönderen Telefon :</strong> {{message.messages_phone}}</p>
+
+        <p><strong>Gönderen E-Posta :</strong> {{message.messages_mail}}</p>
+
+        <p><strong>Gönderilen Tarih :</strong> {{message.messages_time}}</p>
+
+        <hr>
+
+        <pre style="font-size: larger;"><b>Mesaj :</b><br> <br>     {{message.messages_message}}</pre>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+<style>
+    img {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+
+    
+{% block body %}
+<div class="slider-galery">
+    <div class="images">
+        {% if images %}
+            {% for image in images %}
+                <img src="/static/images/SliderImages/{{image.slider_filename}}" alt="">
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="image-form">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+
+            <input type="submit" value="Ekle">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

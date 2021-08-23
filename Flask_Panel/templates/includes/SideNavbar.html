@@ -1,0 +1,170 @@
+<style>
+    /* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: black;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+  }
+  
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+
+  /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .accordion:hover {
+    background-color: rgb(138, 138, 138);
+  }
+  
+  /* Style the accordion panel. Note: hidden by default */
+  .panel {
+    padding: 0 18px;
+    background-color: rgb(209, 207, 207);
+    display: none;
+    overflow: hidden;
+    transition: .3s;
+  }
+
+  .accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 9px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  }
+
+  .dashboard:hover {
+    background-color: rgb(138, 138, 138);
+  }
+
+  #exit-btn{
+    color: gray;
+  }
+
+  #exit-btn:hover {
+    color: white;
+  }
+
+  .icon {
+    float: right;
+  }
+
+  .second-link {
+    background-color: rgb(209, 207, 207);
+  }
+
+  .link:hover{
+    background-color: whitesmoke;
+    color: black;
+  }
+
+  .link {
+    color: black !important;
+  }
+
+</style>
+
+<div class="sidebar">
+  
+  <!-- Dashboard -->
+  <a {% if nav == "Home"%} style="background-color: rgb(138, 138, 138);"{% endif %} class="dashboard" href="/panel/Home">Panel Anasayfa <i class="fas fa-home icon"></i></a>
+
+
+    <button {% if nav == "Site Anasayfa" %} style="background-color: rgb(138, 138, 138);"{% endif %} class="accordion">Site Anasayfa</button>
+    <div {% if nav == "Site Anasayfa" %} style="display: block;"{% endif %} class="panel">
+        <a {% if title == "Slider Ayarları"%} style="background-color: whitesmoke;" {% endif %} class="link" href="/panel/SliderImagesSettings">Slider Galerisi</a>
+    </div>
+
+    <button {% if nav == "Site Sayfaları"%} style="background-color: rgb(138, 138, 138);"{% endif %} class="accordion">Site Sayfaları</button>
+    <div {% if nav == "Site Sayfaları"%} style="display: block;"{% endif %} class="second-link panel">
+      <a {% if title == "Hakkımızda Sayfası Ayarları"%} style="background-color: whitesmoke;" {% endif %} class="link" href="/panel/SitePages/PanelAboutSettings">Hakkımızda</a>
+      <a {% if title == "Vizyonumuz Sayfası Ayarları"%} style="background-color: whitesmoke;" {% endif %}  class="link" href="/panel/SitePages/VisionPageSettings">Vizyonumuz</a>    
+      <a {% if title == "Misyonumuz Sayfası Ayarları"%} style="background-color: whitesmoke;" {% endif %}  class="link" href="/panel/SitePages/MissionPageSettings">Misyonumuz</a>
+      <a {% if title == "Ürünlerimiz Sayfası Ayarları"%} style="background-color: whitesmoke;" {% endif %}  class="link" href="/panel/SitePages/ProductPageSettings">Ürünlerimiz</a>    
+      <a {% if title == "İletişim Sayfası Ayarları"%} style="background-color: whitesmoke;" {% endif %}  class="link" href="/panel/SitePages/PanelContactSettings">İletişim</a>
+    </div>
+
+  <!-- Messages Button -->
+  <a {% if nav == "Messages"%} style="background-color: rgb(138, 138, 138);"{% endif %} class="dashboard" href="/panel/Messages">Site Mesajları <i class="fas fa-envelope icon"></i></a>
+  
+  <!-- Settings Button -->
+  <a {% if nav == "Settings"%} style="background-color: rgb(138, 138, 138);"{% endif %} class="dashboard" href="/panel/Settings">Kullanıcı Ayarları <i class="fas fa-cog icon"></i></a>
+
+  <!-- Logout Button -->
+  <a id="exit-btn" class="dashboard" href="/panel/Logout">Çıkış <i class="fas fa-sign-out-alt icon"></i></a>
+</div>
+
+
+
+
+<!-- Scripts -->
+<script>
+    var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>

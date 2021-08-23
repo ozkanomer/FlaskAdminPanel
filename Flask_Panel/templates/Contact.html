@@ -1,0 +1,335 @@
+<style>
+body {
+
+    background: url("../static/images/BackGround/bg.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.sticky {
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75) !important;
+        -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75) !important;
+        box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75) !important;
+}
+
+.contact-container{
+	position: relative;
+    top: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.contact-box{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0px 0px 19px 5px rgba(0,0,0,0.19);
+    margin: 10px;
+}
+
+.right{
+	padding: 25px 40px;
+}
+
+h2{
+	position: relative;
+	padding: 0 0 10px;
+	margin-bottom: 10px;
+}
+
+h2:after{
+	content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+    background-color: #2ecc71;
+}
+
+.field{
+	width: 100%;
+	border: 2px solid rgba(0, 0, 0, 0);
+	outline: none;
+	background-color: rgba(230, 230, 230, 0.6);
+	padding: 0.5rem 1rem;
+	font-size: 1.1rem;
+	margin-bottom: 22px;
+	transition: .3s;
+}
+
+.field:hover{
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+textarea{
+	min-height: 150px;
+}
+
+.submit {
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn {
+    margin-right: 20px;
+    height: 50px;
+    width: 150px;
+    background-color: #2ecc71;
+	color: #fff;
+    font-size: 1.1rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.btn:hover{
+    background-color: #27ae60;
+    border-bottom: 1px solid rgba(0, 0, 0, .5);
+}
+
+.field:focus{
+    border: 2px solid rgba(30,85,250,0.47);
+    background-color: #fff;
+}
+
+@media screen and (max-width: 880px){
+	.contact-box{
+		grid-template-columns: 1fr;
+	}
+	.left{
+		margin-top: 50px;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+	}
+
+    .submit {
+        display: block;
+    }
+
+    .btn {
+        margin-bottom: 30px;
+    }
+
+    iframe {
+        width: 300px !important;
+        height: 300px !important;
+    }
+
+    .contact-elements {
+        display: block !important;
+        width: 90% !important;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        padding: 15px;
+    }
+    .box {
+        margin-right: 0 !important; 
+        margin-top: 10px;
+    }
+
+}
+
+.left {
+    align-items: center;
+}
+
+.contact-elements {
+    width: 450px;
+    display: inline-flex;
+    justify-content: center;
+    margin: 20px;
+    align-items: center;
+}
+
+.box {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: #2ecc71;
+    margin-right: 12px;
+    padding: 10px;
+    height: 80px;
+}
+
+.box a, .box p {
+    color: white;
+    text-align: center;
+}
+
+
+
+.s-nav{
+  position: fixed;
+  width: 70px;
+  margin-top: 150px;
+  transition: all 0.3s linear;
+  box-shadow: 2px 2px 8px 0px rgba(0,0,0,.4);
+  z-index: 999;
+}
+.s-nav li{
+  height: 60px;
+  position:relative;
+}
+.s-nav li a{
+  color: white;
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 60px;
+  padding-left:25%;
+  border-bottom: 1px solid rgba(0,0,0,.4);
+  transition: all .3s linear;
+}
+.s-nav li:nth-child(1) a{
+  background: #4267B2;
+}
+.s-nav li:nth-child(2) a{
+  background: #1DA1F2;
+}
+.s-nav li:nth-child(3) a{
+  background: #E1306C;
+}
+.s-nav li:nth-child(4) a{
+  background: #2867B2;
+}
+.s-nav li:nth-child(5) a{
+  background: #333;
+}
+.s-nav li:nth-child(6) a{
+  background: #ff0000;
+}
+.s-nav li a i{
+  position:absolute;
+  top: 17px;
+  left: 20px;
+  font-size: 27px;
+}
+ul li a span{
+  display: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.s-nav li a:hover {
+  z-index:1;
+  width: 200px;
+  border-bottom: 1px solid rgba(0,0,0,.5);
+  box-shadow: 0 0 1px 1px rgba(0,0,0,.3);
+}
+ul li:hover a span{
+  padding-left: 30%;
+  display: block;
+}
+
+</style>
+<!-- Extend Layout -->
+{% extends "Layout.html" %}
+{% include "includes/messages.html" %} 
+{% block body %}
+
+
+
+<nav class="s-nav">
+    <ul>
+
+        {% if contact.contact_facebook != ""%} <li><a role="link" href="https://{{contact.contact_facebook}}"><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li> {% endif %}
+
+        {% if contact.contact_twitter != ""%} <li><a href="https://{{contact.contact_twitter}}"><i class="fab fa-twitter"></i><span>Twitter</span></a></li> {% endif %}
+       
+        {% if contact.contact_instagram != ""%} <li><a href="https://{{contact.contact_instagram}}"><i class="fab fa-instagram"></i><span>Instagram</span></a></li>  {% endif %}
+
+        {% if contact.contact_linkedin != ""%} <li><a href="https://{{contact.contact_linkedin}}"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a></li> {% endif %}
+
+
+       
+       
+    </ul>
+ </nav>
+
+<div class="contact-container">
+    
+    <div class="contact-box">
+        <div class="left">
+
+            <div class="contact-elements">
+                    <!-- Phone BOX -->
+                {% if contact.contact_phone != "" %}
+                    <div class="box">
+                        <a href="tel:{{contact.contact_phone}}">{{contact.contact_phone}}</a>
+                    </div>
+                {% endif %}
+
+                <!-- Mail BOX -->
+                {% if contact.contact_mail != "" %}
+                    <div class="box">
+                        <a href="mailto:{{contact.contact_mail}}">{{contact.contact_mail}}</a>
+                    </div>
+                {% endif %}
+
+                <!-- Address BOX -->
+                {% if contact.contact_address != "" %}
+                    <div class="box">
+                        <p href="">{{contact.contact_address}}</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <iframe src="{{contact.contact_iframe}}" width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="right">
+            <h2>İletişim</h2>
+            
+            <form action="" method="POST">
+                <input type="text" class="field" placeholder="İsim Soyisim*" name="name" required>
+                <input type="mail" class="field" placeholder="E-posta*" name="mail" required>
+                <input type="text" class="field" placeholder="Telefon*" name="phone" required>
+                <textarea placeholder="Mesaj*" class="field" name="msg" required></textarea>
+                
+                <div class="submit">
+
+                    <!-- Submit Button -->
+                    <input class="btn" type="submit" value="Gönder">
+    
+                    <!-- reCAPTCHA Button -->
+                    <div class="g-recaptcha" data-sitekey="{{pubkey}}"></div>
+                   
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $(window).scroll(function(){
+          if(this.scrollY > 20) 
+            $(".navbar").addClass("sticky");
+          else
+            $(".navbar").removeClass("sticky");
+        });
+      
+        $('.menu-toggler').click(function(){
+          $(this).toggleClass("active");
+          $(".navbar-menu").toggleClass("active");
+        });
+      });
+    
+      // Get all elements with class="closebtn"
+      var close = document.getElementsByClassName("closebtn");
+      var i;
+</script>
+{% endblock %}

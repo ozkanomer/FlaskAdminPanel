@@ -1,0 +1,98 @@
+
+<style>
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    table tr {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    tr td, tr th {
+        padding: 5px;
+        border: 1px solid black;
+    }
+
+    .btn {
+        padding: 3px;
+        border: none;
+        border-radius: 3px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-show {
+        background-color: #04AA6D;
+    }
+
+    .btn-delete {
+        background-color: #ff471a;
+    }
+
+    .btn-show:hover {
+        background-color: green;
+    }
+
+    .btn-delete:hover {
+        background-color: red;
+    }
+
+</style>
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+
+<!-- Body -->
+{% block body %}
+
+    <div class="message-container">
+        {% if messages %}
+            <h2>Mesajlar</h2>
+            <hr>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Gönderen</th>
+                      <th scope="col">Telefon</th>
+                      <th scope="col">Tarih</th>
+                      <th scope="col">Görüntüle</th>
+                      <th scope="col">Sil</th>
+                    </tr>
+                  </thead>
+            
+            <tbody>
+                {% for i in messages %}
+                    {% if i.messages_isread == 0 %}
+                        
+                            <tr class="no-read">
+                                <td scope="row"><strong>{{ i.messages_sender_name }}</strong></td>
+                                <td><strong>{{ i.messages_phone }}</strong></td>
+                                <td><strong>{{ i.messages_time }}</strong></td>
+        
+                                <td><a class="btn btn-show" href="/panel/Messages/Show/{{i.messages_id}}">Görüntüle</a></td>
+                                <td><a class="btn btn-delete" href="/panel/Messages/DelMessage/{{i.messages_id}}">Mesajı Sil</a></td>
+                            </tr>
+                    {% endif %}
+                {% endfor %}
+                {% for i in messages %}
+                    {% if i.messages_isread != 0 %}
+                        
+                            <tr class="read">
+                                <td scope="row">{{ i.messages_sender_name }}</td>
+                                <td>{{ i.messages_phone }}</td>
+                                <td>{{ i.messages_time }}</td>
+        
+                                <td><a class="btn btn-show" href="/panel/Messages/Show/{{i.messages_id}}">Görüntüle</a></td>
+                                <td><a class="btn btn-delete" href="/panel/Messages/DelMessage/{{i.messages_id}}">Mesajı Sil</a></td>
+                            </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+    </div>
+
+{% endblock %}

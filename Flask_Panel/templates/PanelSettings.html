@@ -1,0 +1,96 @@
+<style>
+    .table-container {
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        margin-top: 25px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    thead {
+      background-color: rgb(206, 182, 182);
+    }
+
+    tr:nth-child(even) {background-color: #e9e3e3;}
+
+    tr:hover {background-color: #b9b5b5;}
+
+    td a , td button{
+      text-decoration: none;
+      border: none;
+      background-color: rgb(209, 3, 3);
+      padding: 6px;
+      color: white;
+      border-radius: 5px;
+    }
+
+    td a:hover , td button:hover{
+      background-color: red;
+      cursor: pointer;
+    }
+
+    .TextBox {
+      padding: 5px;
+      border-radius: 4px;
+      display: none;
+    }
+
+    @media screen and (max-width: 700px) {
+        
+      .table-container {
+          position: absolute;
+          height: auto;
+          top: auto;
+          left: auto;
+      }
+  }
+</style>
+
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+
+<!-- Body -->
+{% block body %}
+    <div class="table-container">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Kullanıcı :</th>
+                <th scope="col">Değer :</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <th scope="row">Adı Soyadı :</th>
+                <td>{{user.users_name}}</td>
+                <td><a class="btn btn-danger" href="/panel/Settings/ChangeName">Değiştir</a></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Kullanıcı Adı :</th>
+                <td>{{user.users_user_name}}</td>
+                <td><a class="btn btn-danger" href="/panel/Settings/ChangeUserName">Değiştir</a></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Şifresi :</th>
+                <td>{{user.users_password}}</td>
+                <td><a class="btn btn-danger" href="/panel/Settings/ChangePassword">Değiştir</a></td>
+              </tr>
+
+            </tbody>
+          </table>
+    </div>
+{% endblock %}

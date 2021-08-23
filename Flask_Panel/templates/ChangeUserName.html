@@ -1,0 +1,55 @@
+<style>
+    .NameUpdate {
+        display: block;
+        position: absolute;
+        top: 20%;
+        left: 40%;
+    }
+
+    #NameUpdateInput {
+        padding: 8px;
+    }
+
+    #NameUpdateButton {
+        padding: 10px;
+        background-color: rgb(209, 3, 3);
+        color: white;
+        border: none;
+        border-radius: 3px;
+    }
+
+    #NameUpdateButton:hover {
+        background-color: red;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 700px) {
+        
+        .NameUpdate {
+            position: absolute;
+            height: auto;
+            top: auto;
+            left: auto;
+        }
+    }
+
+</style>
+
+<!-- Extend Layout -->
+{% extends "PanelLayout.html" %}
+{% block body %}
+
+    <div class="NameUpdate">
+        
+        <p><strong>Eski Kullanıcı Adı:</strong>{{user.users_user_name}}</p>
+
+        <form action="" method="POST">
+
+                <input id="NameUpdateInput" name="NewUserName" type="text" placeholder="Yeni Kullanıcı Adı Giriniz">
+
+                <input id="NameUpdateButton" type="submit" value="Güncelle">       
+        </form>
+    </div>
+    
+
+{% endblock %}
