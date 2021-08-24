@@ -16,7 +16,7 @@ app = Flask(__name__, static_url_path="/static", static_folder="static")
 
 
 # Secret Key for Message Flashing
-app.secret_key = "TosyaMensucat"
+app.secret_key = "TheSecretKey"
 
 # reCAPTCHA PublicKey
 pubkey = "Google ReCAPTCHA Public Key"
